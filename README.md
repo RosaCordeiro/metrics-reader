@@ -1,4 +1,4 @@
-# modelo-api
+# metrics-reader
 
 Para executar sem o docker é necessário ao menos criar um arquivo .env e setar a propriedade PORT.
 
