@@ -144,6 +144,16 @@ fdsGauge.addCallback((result) => {
     result.observe(fdCount, { service_name: getEnvorimentVariables().apiName, environment: getEnvorimentVariables().environment });
 });
 
+const processMaxFdsGauge = meter.createObservableGauge('custom_telemetry_process_open_fds_max', { description: 'Numero maximo de descritores de arquivo que o processo pode abrir' });
+processMaxFdsGauge.addCallback((result) => {
+    const maxFds = fs.readFileSync('/proc/self/limits', 'utf8')
+        .split('\n')
+        .find(line => line.startsWith('Max open files'))
+        ?.split(/\s+/)[3];
+
+    result.observe(maxFds ? Number(maxFds) : 0, { service_name: getEnvorimentVariables().apiName, environment: getEnvorimentVariables().environment });
+});
+
 /*** Processos ativos ***/
 const handlesGauge = meter.createObservableGauge('custom_telemetry_process_active_handles', { description: 'Numero de handles ativos (timers, sockets, etc.)' });
 handlesGauge.addCallback((result) => {

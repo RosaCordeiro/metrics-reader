@@ -31,6 +31,14 @@ function aggregateMetrics(data: PrometheusMetric[]) {
 
 export class ListMetricsUseCase {
     async execute(serviceName: string, environment: string): Promise<any> {
+        const prometheusProtocol = process.env.PROMETHEUS_PROTOCOL
+        const prometheusHost = process.env.PROMETHEUS_HOST
+        const prometheusPort = process.env.PROMETHEUS_PORT
+
+        if (!prometheusProtocol || !prometheusHost || !prometheusPort) {
+            throw new Error('Configuração do Prometheus está incompleta.');
+        }
+        
         const prometheusData: any = await axios.get<any>(`${process.env.PROMETHEUS_PROTOCOL}://${process.env.PROMETHEUS_HOST}:${process.env.PROMETHEUS_PORT}/api/v1/query`, {
             params: {
                 query: `{__name__=~"^custom_telemetry.*"}`
@@ -38,7 +46,7 @@ export class ListMetricsUseCase {
         }).then(response => {
             return response;
         }).catch(error => {
-            throw new Error(`Erro ao buscar métricas doo Prometheus: ${error.message}`);
+            throw new Error(`Erro ao buscar métricas do Prometheus: ${error.message}`);
         });
 
         if (prometheusData.data.status !== 'success' || !prometheusData.data.data) {
