@@ -1,5 +1,5 @@
 import { metricsHandler } from './../../shared/providers/metrics/instrumentation';
-import { ItsAliveController } from "@/presentation/controllers/ItsAliveController";
+import { ItsAliveController } from "@/presentation/controllers/its-alive.controller";
 import { Router } from "express";
 import { MetricsController } from '../controllers/MetricsController';
 

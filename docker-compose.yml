@@ -2,6 +2,7 @@ services:
   app:
     build: .
     container_name: metrics-reader
+    network_mode: bridge
     working_dir: /usr/src/app
     volumes:
       - ./:/usr/src/app
