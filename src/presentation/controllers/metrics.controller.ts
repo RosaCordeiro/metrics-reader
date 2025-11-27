@@ -1,4 +1,4 @@
-import { ListMetricsUseCase } from "@/core/useCases/metrics/ListMetricsUseCase";
+import { ListMetricsUseCase } from "@/core/application/useCases/metrics/list-metrics.use-case";
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
