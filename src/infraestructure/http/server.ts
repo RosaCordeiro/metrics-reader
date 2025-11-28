@@ -5,6 +5,7 @@ import express from "express"
 import "@/shared/container";
 import cors from 'cors';
 import { httpMetricsMiddleware } from "light-node-metrics";
+import { logger } from "@/shared/singletons/logger.singleton";
 
 const app = express()
 
@@ -28,5 +29,5 @@ app.use(router);
 const port = process.env.PORT
 
 app.listen(port, () => {
-    console.log(`Listening on PORT ${port}`, 'PID:', process.pid)
+    logger.info(`Listening on PORT ${port}`)
 })
