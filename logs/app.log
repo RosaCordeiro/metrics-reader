@@ -1,4 +1,0 @@
-{"level":30,"time":"2025-11-28T19:10:00.813Z","pid":994564,"hostname":"CB6D6294","app_name":"metrics-reader","environment":"DEV","version":"1.0.0","msg":"Listening on PORT 8026"}
-{"level":30,"time":"2025-11-28T19:11:01.278Z","pid":45,"hostname":"8add0b5f56ea","app_name":"metrics-reader","environment":"DEV","version":"1.0.0","msg":"Listening on PORT 8026"}
-{"level":30,"time":"2025-11-28T19:13:04.028Z","pid":45,"hostname":"8add0b5f56ea","app_name":"metrics-reader","environment":"DEV","version":"1.0.0","msg":"Listening on PORT 8026"}
-{"level":30,"time":"2025-11-28T19:17:45.662Z","pid":45,"hostname":"9f84ef24cff9","app_name":"metrics-reader","environment":"DEV","version":"1.0.0","msg":"Listening on PORT 8026"}
