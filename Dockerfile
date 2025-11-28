@@ -1,5 +1,5 @@
 # 1️⃣ Imagem base
-FROM node:18
+FROM node:20
 
 # 2️⃣ Diretório de trabalho dentro do container
 WORKDIR /usr/src/app
