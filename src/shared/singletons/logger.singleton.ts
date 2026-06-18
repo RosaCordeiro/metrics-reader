@@ -3,7 +3,7 @@ import { LoggerProvider } from '../providers/logger/create-logger.provider';
 
 export const logger = new LoggerProvider({
     pretty: process.env.NODE_ENV !== 'production',
-    logDir: './logs',
+    logDir: './logss',
     maxSize: '5M',
     rotateInterval: '1d',
     maxFiles: 10,

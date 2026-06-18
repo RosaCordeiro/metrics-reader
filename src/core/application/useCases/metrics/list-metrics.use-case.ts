@@ -1,3 +1,4 @@
+import { logger } from "@/shared/singletons/logger.singleton";
 import axios from "axios";
 
 type PrometheusMetric = {
@@ -39,15 +40,19 @@ export class ListMetricsUseCase {
             throw new Error('Configuração do Prometheus está incompleta.');
         }
         
+        logger.info(`Iniciando consulta ao Prometheus em ${prometheusProtocol}://${prometheusHost}:${prometheusPort} para métricas de serviço: ${serviceName}, ambiente: ${environment}`);
+        
         const prometheusData: any = await axios.get<any>(`${process.env.PROMETHEUS_PROTOCOL}://${process.env.PROMETHEUS_HOST}:${process.env.PROMETHEUS_PORT}/api/v1/query`, {
             params: {
-                query: `{__name__=~"^custom_telemetry.*"}`
+                query: '{__name__=~"custom_telemetry_.*"}'
             }
         }).then(response => {
             return response;
         }).catch(error => {
             throw new Error(`Erro ao buscar métricas do Prometheus: ${error.message}`);
         });
+
+        logger.info(`Dados brutos do Prometheus: ${JSON.stringify(prometheusData.data)}`);
 
         if (prometheusData.data.status !== 'success' || !prometheusData.data.data) {
             return null;

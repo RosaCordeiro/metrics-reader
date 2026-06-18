@@ -2,7 +2,6 @@ services:
   app:
     build: .
     container_name: metrics-reader
-    network_mode: bridge
     working_dir: /usr/src/app
     mem_limit: 512m
     volumes:
@@ -13,8 +12,17 @@ services:
       - PORT=8026
       - APINAME=metrics-reader
       - AMBIENTE=DEV
+      - PROMETHEUS_PROTOCOL=http
+      - PROMETHEUS_HOST=prometheus
+      - PROMETHEUS_PORT=9090
+    networks:
+      - monitoring-net
     logging:
       driver: "fluentd"
       options:
         fluentd-address: 172.17.0.1:24224
         tag: metrics-reader.logs
+networks:
+  monitoring-net:
+    external: true
+    
